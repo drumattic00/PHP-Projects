@@ -8,22 +8,43 @@ body {
     font-family: 'Courier New', Courier, monospace;
     height: 100vh;
     width: 100vw;
+    display:flex;
+    Align-items: flex-start;
+    justify-content: center;
 }
 
 h1 {
 
 }
 .wrapper {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     column-gap: 3rem;
     row-gap: 1rem;
     grid-template-columns: repeat(4,1fr);
     margin: 5rem;
+    width: 50vw;
 }
 
 #rating {
     display: flex;
     align-items: center;
+    /* gap: ; */
+}
+
+#img-info {
+    display:flex;
+    gap: 3rem;
+}
+
+#recipe-tools {
+    display:flex;
+    flex-direction: column;
+}
+
+#meal-img>img {
+    width: 35rem;
+    height: auto;
 }
 
 #meal-info {
@@ -32,15 +53,23 @@ h1 {
     justify-content: space-evenly;
     border: 1px solid #868686d0;
     border-radius: 5px;
-    height: 95%;
+    /* height: ; */
+    width: 15rem;
     padding-left: 1rem;
     
 }
 
 #gallery {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 2rem;
 }
+
+#gallery>img {
+    height:60px;
+    width:100px;
+}
+
 .gold-star>img {
     height:20px;
     width:20px;

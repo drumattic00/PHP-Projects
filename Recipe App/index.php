@@ -21,7 +21,7 @@
 
     <div class="wrapper">
         <h1 class="grid-col-span-4">My First Recipe</h1>
-        <div class="info grid-col-span-4">
+        <div class="info">
             <div id="rating">
                 <span>Rating:&nbsp;</span>
                 <i class="gold-star">
@@ -33,26 +33,28 @@
                 </i>
             </div>
         </div>
-        <div id="meal-img" class="grid-col-span-2">
-            <img src="https://source.unsplash.com/random/500x350" alt="">
+        <div id="img-info">
+            <div id="meal-img" class="">
+                <img src="https://source.unsplash.com/random/700x350" alt="">
+            </div>
+            <div id="meal-info" class="grid-col-span-1">
+                <p>Prep:</p>
+                <p>Cook:</p>
+                <p>Total:</p>
+                <p>Servings:</p>
+                <p>Yield:</p>
+            </div>
         </div>
-        <div id="meal-info" class="grid-col-span-1">
-            <p>Prep:</p>
-            <p>Cook:</p>
-            <p>Total:</p>
-            <p>Servings:</p>
-            <p>Yield:</p>
-        </div>
-        <div id="gallery" class="grid-col-span-2">
+        <div id="gallery" class="">
             <img src="https://source.unsplash.com/random/100x75" alt="">
             <img src="https://source.unsplash.com/random/100x75" alt="">
             <img src="https://source.unsplash.com/random/100x75" alt="">
             <img src="https://source.unsplash.com/random/100x75" alt="">
         </div>
-        <div id="blurb" class="grid-col-span-4">
+        <div id="blurb" class="">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, neque facilis? Accusantium beatae quibusdam a et? Totam aliquam asperiores est, quis iure cupiditate doloribus ratione tempora sint deserunt perspiciatis nostrum saepe eos doloremque quo. Repudiandae facere ab eius cupiditate officiis voluptatum, temporibus ex aspernatur totam nostrum, sit maxime voluptas illum.</p>
         </div>
-        <div id="ingredients" class="grid-col-span-4">
+        <div id="ingredients" class="">
             <h2>Ingredients</h2>
             <ul>
                 <li>Lorem ipsum dolor sit.</li>
@@ -62,14 +64,14 @@
                 <li>Repudiandae porro molestias labore?</li>
             </ul>
         </div>
-        <div id="directions" class="grid-col-span-4">
+        <div id="directions" class="">
             <h2>Directions</h2>
         </div>
         <div id="nut-facts">
-            <h2 class="grid-col-span-4">Nutrition Facts</h2>
+            <h2 class="">Nutrition Facts</h2>
         </div>
-        <div id="notes" class="grid-col-span-4">
-            <h2 class="grid-col-span-4">Notes</h2>
+        <div id="notes" class="">
+            <h2 class="">Notes</h2>
         </div>
     </div>
 
