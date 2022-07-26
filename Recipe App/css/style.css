@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+
+}
+.wrapper {
+    display: grid;
+    column-gap: 3rem;
+    row-gap: 1rem;
+    grid-template-columns: repeat(4,1fr);
+    margin: 5rem;
+}
+
+#rating {
+    display: flex;
+    align-items: center;
+}
+
+#meal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #868686d0;
+    border-radius: 5px;
+    height: 95%;
+    padding-left: 1rem;
+    
+}
+
+#gallery {
+    display: flex;
+    justify-content: space-between;
+}
+.gold-star>img {
+    height:20px;
+    width:20px;
+}
+
+.grid-col-span-1 {
+    grid-column: span 1;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+.grid-col-span-4 {
+    grid-column: span 4;
+}
