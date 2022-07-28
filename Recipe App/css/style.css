@@ -6,24 +6,23 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    height: 100vh;
     width: 100vw;
-    display:flex;
+    display: flex;
     Align-items: flex-start;
     justify-content: center;
 }
 
-h1 {
-
-}
 .wrapper {
     display: flex;
-    flex-direction: column;
-    column-gap: 3rem;
-    row-gap: 1rem;
-    grid-template-columns: repeat(4,1fr);
-    margin: 5rem;
-    width: 50vw;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    row-gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 90vw;
+}
+
+h1 {
+    margin-top: 3rem;
 }
 
 #rating {
@@ -32,18 +31,23 @@ h1 {
     /* gap: ; */
 }
 
-#img-info {
-    display:flex;
-    gap: 3rem;
+.gold-star>img {
+    height: 20px;
+    width: 20px;
 }
 
-#recipe-tools {
-    display:flex;
-    flex-direction: column;
+#img-info-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    /* width: 100%; */
 }
+
+#meal-img {}
 
 #meal-img>img {
-    width: 35rem;
+    width: 100%;
     height: auto;
 }
 
@@ -51,38 +55,88 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border: 1px solid #868686d0;
-    border-radius: 5px;
-    /* height: ; */
-    width: 15rem;
+    border-left: 2px solid #868686a7;
+    border-radius: 2px;
+    row-gap: 1rem;
+    width: 100%;
     padding-left: 1rem;
-    
+    padding: 1rem;
 }
 
 #gallery {
     display: flex;
     justify-content: flex-start;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 #gallery>img {
-    height:60px;
-    width:100px;
+    height: 45px;
+    width: 75px;
 }
 
-.gold-star>img {
-    height:20px;
-    width:20px;
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 }
 
-.grid-col-span-1 {
-    grid-column: span 1;
+#blurb {}
+
+#ingredients {}
+
+#directions {}
+
+.paragraph {
+    margin-top: 1rem;
 }
 
-.grid-col-span-2 {
-    grid-column: span 2;
+#nutrition {}
+
+#notes {}
+
+@media only screen and (min-width: 768px) {
+    body {
+        background: red;
+    }
+
+    .wrapper {
+        width: 75%;
+    }
 }
 
-.grid-col-span-4 {
-    grid-column: span 4;
+@media only screen and (min-width: 1024px) {
+    body {
+        background: silver
+    }
+
+    .wrapper {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    body {
+        background: lightseagreen;
+    }
+
+    .wrapper {
+        width: 50%;
+        justify-content: flex-start;
+    }
+
+    #meal-img {
+        width: 55%;
+    }
+
+    #meal-info {
+        width: 40%;
+    }
+
+    #gallery {
+        order: 3;
+    }
+
+    .recipe-info {
+        width: 40rem;
+    }
 }
