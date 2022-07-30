@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Recipe Page</title>
-</head>
-
-<body>
+<?php
+$title="Recipe Page";
+require_once('inc/header.inc.php');
+?>
     <?php
     // require_once('inc/dbconnect.inc.php');
 
@@ -17,9 +9,11 @@
     // while ($row = $stmt->fetch()) {
     //     echo $row['first_name'] . "\n";
     // }
+
     ?>
 
-    <div class="wrapper">
+
+<div class="wrapper">
         <h1 class="">My First Recipe</h1>
             <div id="rating">
                 <span>Rating:&nbsp;</span>
@@ -46,7 +40,6 @@
                 <p>Cook: <span id="cook">30 mins</span></p>
                 <p>Total: <span id="total">40 mins</span></p>
                 <p>Servings: <span id="servings">4</span></p>
-                <p>Yield: <span id="yield">4 servings</span></p>
             </div>
         </div>
         <div class="recipe-info">
@@ -77,8 +70,4 @@
         </div>
         <footer>Some Shit Here.</footer>
     </div>
-
-    <script src="js/script.js"></script>
-</body>
-
-</html>
+<?php require_once('inc/footer.inc.php');

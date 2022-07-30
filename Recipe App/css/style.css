@@ -8,8 +8,39 @@ body {
     font-family: 'Courier New', Courier, monospace;
     width: 100vw;
     display: flex;
-    Align-items: flex-start;
+    flex-direction: column;
+    Align-items: center;
     justify-content: center;
+}
+
+nav {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 3rem;
+}
+
+.subcontainer {
+    width: 100vw;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.subcontainer>a {
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 8px;
+    text-decoration: none;
+    background: lightgray;
+    font-weight: 600;
+}
+
+a:visited {
+    color: black;
 }
 
 .wrapper {
@@ -23,6 +54,10 @@ body {
 
 h1 {
     margin-top: 3rem;
+}
+
+.formH2 {
+    margin: 3rem 0 1.5rem 0;
 }
 
 #rating {
@@ -117,6 +152,10 @@ h1 {
 @media only screen and (min-width: 1280px) {
     body {
         /* background: lightseagreen; */
+    }
+
+    .subcontainer {
+        width: 50%;
     }
 
     .wrapper {
