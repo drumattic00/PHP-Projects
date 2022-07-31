@@ -112,7 +112,7 @@ h1 {
 .recipe-info {
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1.5rem;
 }
 
 #blurb {}

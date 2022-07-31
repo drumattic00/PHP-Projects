@@ -17,7 +17,8 @@ addIngredient.addEventListener("click", () => {
     let input1 = document.createElement("input")
     input1.setAttribute("type", "text")
     input1.setAttribute("class", "form-control")
-    input1.setAttribute("id", "ing" + ingCounter)
+    input1.setAttribute("id", "ing_" + ingCounter)
+    input1.setAttribute("name", "ing_" + ingCounter)
 
 
     span1.innerText = "Ingredient " + ingCounter

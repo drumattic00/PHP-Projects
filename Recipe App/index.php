@@ -7,19 +7,16 @@ require_once('inc/header.inc.php');
     require('inc/functions.inc.php');
 
     // Basic Information SQL Statement and Processing
-    $stmt = $pdo->query('SELECT * FROM basic_info WHERE meal_id = 1');
-    // while ($row = $stmt->fetch()) {
-    //     // echo $row['recipe_name'] . "\n";
-    // }
+    $stmt = $pdo->query('SELECT * FROM basic_info WHERE meal_id = 5');
     $info = $stmt->fetch();
     $recipe_name = $info['recipe_name'];
     $img_url = $info['img_url'];
-    $description = $info['description'];
+    $descript = $info['descript'];
     $prep_time = $info['prep_time'];
     $cook_time = $info['cook_time'];
     $servings = $info['servings'];
     $total_time = $info['total_time'];
-    $nutrition= $info['nutrition_facts'];
+    $nutrition= $info['nutrition'];
     $notes = $info['notes'];
 
     // Ingredient List SQL Statement and Processing
@@ -27,6 +24,13 @@ require_once('inc/header.inc.php');
     $ingredients = [];
     while ($row = $stmt2->fetch()) {
         array_push($ingredients, $row['ingredient']);
+    }
+
+    // Directions List SQL Statement and Processing
+    $stmt3 = $pdo->query('SELECT * FROM directions WHERE meal_id = 1');
+    $directions = [];
+    while($row = $stmt3->fetch()) {
+        array_push($directions, $row['direction']);
     }
     ?>
 
@@ -62,7 +66,7 @@ require_once('inc/header.inc.php');
         </div>
         <div class="recipe-info">
             <div id="blurb" class="">
-                <p><?php echo $description; ?></p>
+                <p><?php echo $descript; ?></p>
             </div>
             <h2>Ingredients</h2>
             <div id="ingredients" class="">
@@ -72,11 +76,12 @@ require_once('inc/header.inc.php');
             </div>
             <h2>Directions</h2>
             <div id="directions" class="">
-                <input type="checkbox" name="step1" id="step1">
+                <!-- <input type="checkbox" name="step1" id="step1">
                 <label for="step1">Step 1</label>
                 <div class="paragraph">
                     <p>Here is a step for the recipe. Complete this step, and then feel free to go onto the next step.</p>
-                </div>
+                </div> -->
+                <?php printDirections($directions); ?>
             </div>
             <h2 class="">Nutrition Facts</h2>
             <div id="nutrition">
