@@ -71,7 +71,7 @@ while($row = $stmt1->fetch()) {
             <h2 class="formH2">Directions</h2>
             <div class="input-group mb-3">
                 <span class="input-group-text">Step 1</span>
-                <input type="text" class="form-control" id="step1" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="step_1" name="step_1" aria-label="" aria-describedby="basic-addon1">
             </div>
         </div>
         <button type="button" class="btn btn-light" id="addDirection">+ step</button>
