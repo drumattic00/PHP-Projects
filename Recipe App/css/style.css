@@ -109,10 +109,28 @@ h1 {
     width: 75px;
 }
 
+#selected_categories {
+    margin: 1rem 0;
+}
+
+.selected_category {
+    font-size: .9rem;
+    font-weight: 600;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .recipe-info {
     display: flex;
     flex-direction: column;
     row-gap: 1.5rem;
+}
+
+#clearCategories {
+    margin-bottom: 1rem;
+    float: right;
+    padding: 5px;
 }
 
 #blurb {}

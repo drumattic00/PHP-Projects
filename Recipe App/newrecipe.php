@@ -5,7 +5,7 @@ require_once('inc/nav.inc.php');
 require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');
 
-$stmt1 = $pdo->query('SELECT * FROM categories');
+$stmt1 = $pdo->query('SELECT * FROM category_types');
 $categories = [];
 while($row = $stmt1->fetch()) {
     $categories[$row['category_id']] = $row['category'];
@@ -15,21 +15,41 @@ while($row = $stmt1->fetch()) {
 ?>
 
 <div class="wrapper">
-    <form action="submitrecipe.php" method="post" id="newRecipe">
+    <!-- <form action="submitrecipe.php" method="post" id="newRecipe"> -->
+    <form action="submitrecipe.php" method="post" id="recipeForm">
         <h2 class="formH2">Basic Information</h2>
         <div class="input-group mb-3">
             <span class="input-group-text" id="recipename">Recipe Name</span>
             <input type="text" name="recipe_name" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Category&nbsp;&nbsp;&nbsp;</label>
-            <select class="form-select" id="inputGroupSelect01" name="category_id">
+        <!-- <div class="input-group mb-3">
+            <label class="input-group-text" for="category">Category&nbsp;&nbsp;&nbsp;</label>
+            <select class="form-select" id="category" name="category_id">
+                <option selected>Choose...</option>
+                <?php //fillCategories($categories); ?>
+            </select>
+        </div> -->
+
+
+
+
+        <!-- DELETE THIS AFTER TESTING -->
+        <div class="input-group">
+        <label class="input-group-text" for="categorySelect">Category&nbsp;&nbsp;&nbsp;</label>
+            <select class="form-select" id="categorySelect" aria-label="Example select with button addon">
                 <option selected>Choose...</option>
                 <?php fillCategories($categories); ?>
             </select>
+            <button class="btn btn-secondary" id="addCategoryBtn" type="button">Add</button>
         </div>
-
+        <div id="selected_categories">
+            <!-- <span class="selected_category">A Sample Category</span> -->
+        </div>
+            <!-- DELETE ABOVE AFTER TESTING -->
+        <div>
+            <input type="button" id="clearCategories" value="Clear Categories" hidden>
+        </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Prep Time&nbsp;&nbsp;</span>
             <input type="text" class="form-control" id="preptime" name="prep_time" aria-label="" aria-describedby="basic-addon1">

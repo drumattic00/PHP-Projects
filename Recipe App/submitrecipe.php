@@ -5,16 +5,13 @@ require_once('inc/nav.inc.php');
 require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');
 
-// print_r($_POST);
+print_r($_POST);
 
 // Prep recipe Basic Info for database
 
 if(isset($_POST['submit'])) {
     if ($_POST['recipe_name'] != ""){
         $recipe_name = $_POST['recipe_name'];
-    }
-    if ($_POST['category_id'] != ""){
-        $category_id = $_POST['category_id'];
     }
     if ($_POST['prep_time'] != ""){
         $prep_time = $_POST['prep_time'];
@@ -49,10 +46,10 @@ if(isset($_POST['submit'])) {
 
     try{
         // send Basic Info to database
-        $sql1 = $pdo->prepare("INSERT INTO basic_info (recipe_name, category_id, prep_time, cook_time, 
+        $sql1 = $pdo->prepare("INSERT INTO basic_info (recipe_name, prep_time, cook_time, 
                     total_time, servings, img_url, descript, nutrition, notes)
-                    VALUES(:recipe_name, :category_id, :prep_time, :cook_time, :total_time, :servings, :img_url, :descript, :nutrition, :notes)");
-        $sql1->execute([$recipe_name, $category_id, $prep_time, $cook_time, $total_time, $servings, $img_url, $descript, $nutrition, $notes]);
+                    VALUES(:recipe_name, :prep_time, :cook_time, :total_time, :servings, :img_url, :descript, :nutrition, :notes)");
+        $sql1->execute([$recipe_name, $prep_time, $cook_time, $total_time, $servings, $img_url, $descript, $nutrition, $notes]);
         $rowCount = $sql1->rowCount();
         
         // send Ingredients to database
@@ -61,7 +58,7 @@ if(isset($_POST['submit'])) {
             $row = $stmt->fetch();
             $meal_id = $row['meal_id'];
             for($i = 1; $i < 100; $i++) {
-                    if(isset($_POST['ing_' . $i])) {
+                    if(isset($_POST['ing_' . $i]) && ($_POST['ing_' . $i] != "")) {
                     $ingredient = $_POST['ing_' . $i];
                     $sql2 = $pdo->prepare("INSERT INTO `ingredients` (`id`, `meal_id`, `ingredient`) VALUES (NULL, :meal_id, :ingredient)");
                     $sql2->execute([$meal_id, $ingredient]);
@@ -71,25 +68,31 @@ if(isset($_POST['submit'])) {
                     break;
                 }
             }
-        }
-                // send Directions to database
-                if($rowCount === 1) {
-                    for($i = 1; $i < 100; $i++) {
-                            if(isset($_POST['step_' . $i])) {
-                            $step = $_POST['step_' . $i];
-                            $sql3 = $pdo->prepare("INSERT INTO `directions` (`id`, `meal_id`, `direction`) VALUES (NULL, :meal_id, :direction)");
-                            $sql3->execute([$meal_id, $step]);
-                            echo "Step added!\n";
-                        } else {
-                            echo "breaking!";
-                            break;
-                        }
-                    }
+            // send Directions to database
+            for($i = 1; $i < 100; $i++) {
+                if(isset($_POST['step_' . $i]) && ($_POST['step_' . $i] != "")) {
+                    $step = $_POST['step_' . $i];
+                    $sql3 = $pdo->prepare("INSERT INTO `directions` (`id`, `meal_id`, `direction`) VALUES (NULL, :meal_id, :direction)");
+                    $sql3->execute([$meal_id, $step]);
+                    echo "Step added!\n";
+                } else {
+                    echo "breaking!";
+                    break;
                 }
+            }
+            // send Categories to database
+            for($i = 1; $i < 40; $i++) {
+                if(isset($_POST['category_' . $i])) {
+                    $category = $_POST['category_' . $i];
+                    $sql4 = $pdo->prepare("INSERT INTO `meal_categories` (`id`, `meal_id`, `category_id`) VALUES (NULL, :meal_id, :category_id)");
+                    $sql4->execute([$meal_id, $category]);
+                    echo "Category added!\n";
+                }
+            }
+        }
     } catch (Exception $e) {
-        echo "There was an error.\n";
+        echo "There was an error.\n\n";
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
-}
-    
+}   
 ?>

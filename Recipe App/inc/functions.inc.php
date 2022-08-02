@@ -22,7 +22,7 @@ function printDirections($dirArray) {
 
 function fillCategories($catArray) {
     foreach($catArray as $id => $category) {
-        echo "<option value='$id'>$category</option>";
+        echo "<option id='ctg_$id' value='$id'>$category</option>";
     }
 }
 
