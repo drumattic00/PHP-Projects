@@ -7,8 +7,7 @@ require_once('inc/functions.inc.php');
 
 print_r($_POST);
 
-// Prep recipe Basic Info for database
-
+// Set variables from $_POST variable
 if(isset($_POST['submit'])) {
     if ($_POST['recipe_name'] != ""){
         $recipe_name = $_POST['recipe_name'];
@@ -34,9 +33,7 @@ if(isset($_POST['submit'])) {
     if ($_POST['nutrition'] != ""){
         $nutrition = $_POST['nutrition'];
     }
-    if ($_POST['notes'] != ""){
         $notes = $_POST['notes'];
-    }
     if ($_POST['ing_1'] != ""){
         $ing_1 = $_POST['ing_1'];
     }
@@ -90,6 +87,7 @@ if(isset($_POST['submit'])) {
                 }
             }
         }
+        // error handling
     } catch (Exception $e) {
         echo "There was an error.\n\n";
         echo 'Caught exception: ',  $e->getMessage(), "\n";

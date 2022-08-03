@@ -1,3 +1,4 @@
+// DOM hooks
 const addIngredient = document.querySelector("#addIngredient")
 const addDirection = document.querySelector("#addDirection")
 const ingredients = document.querySelector("#ingredients")
@@ -9,7 +10,7 @@ const options = document.querySelectorAll("option")
 const clearCategoriesBtn = document.querySelector("#clearCategories")
 
 
-
+// counters for ingredients and directions
 let ingCounter = 1
 let stepCounter = 1
 
@@ -42,16 +43,14 @@ addDirection.addEventListener("click", () => {
     let span2 = document.createElement("span")
     span2.setAttribute("class", "input-group-text")
 
-    let input2 = document.createElement("input")
-    input2.setAttribute("type", "text")
-    input2.setAttribute("class", "form-control")
-    input2.setAttribute("name", "step_" + stepCounter)
-
-
+    let textarea1 = document.createElement("textarea")
+    textarea1.setAttribute("class", "form-control")
+    textarea1.setAttribute("name", "step_" + stepCounter)
+    textarea1.setAttribute("id", "step_" + stepCounter)
 
     span2.innerText = "Step " + stepCounter
     div2.appendChild(span2)
-    div2.appendChild(input2)
+    div2.appendChild(textarea1)
     directions.appendChild(div2)
 })
 
@@ -91,11 +90,15 @@ addCategory.addEventListener("click", () => {
 })
 
 clearCategoriesBtn.addEventListener("click", () => {
+    // hide Clear Categories button when categories are cleared
     clearCategoriesBtn.hidden = true
+    // remove all category spans
     selectedCategories.innerHTML = ""
+    // remove hidden attribute for all input:select options
     options.forEach(element => {
         element.hidden = false
     })
+    // remove the hidden inputs for selected categories
     const hiddenInputs = document.querySelectorAll(".hiddenInput")
     hiddenInputs.forEach(element => {
         element.remove()

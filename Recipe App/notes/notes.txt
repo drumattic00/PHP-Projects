@@ -1,0 +1,5 @@
+-Build out recipe category pages
+    -cards w/ pictures
+    -code proper SQL statement for each
+    -get $_GET links working correctly
+    -
