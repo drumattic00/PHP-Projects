@@ -1,5 +1,3 @@
--Build out recipe category pages
-    -cards w/ pictures
-    -code proper SQL statement for each
-    -get $_GET links working correctly
-    -
+- get rating system working
+- fine-tune responsiveness for each media query
+- Set up sections in style.css for each page of site.

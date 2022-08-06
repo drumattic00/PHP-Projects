@@ -1,3 +1,13 @@
+:root {
+    --bg-main: #F8F0DF;
+    --bg-scnd: #fdfbf6;
+    --color-primary: #0a5c61;
+    --color-scnd: #79B4B7;
+    --color-thr: ;
+    --color-four: ;
+
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,8 +15,10 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2rem;
     width: 100vw;
+    background: var(--bg-scnd);
     display: flex;
     flex-direction: column;
     Align-items: center;
@@ -18,7 +30,7 @@ nav {
     display: flex;
     justify-content: center;
     border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--color-scnd);
     margin-bottom: 3rem;
 }
 
@@ -49,7 +61,8 @@ a:visited {
     justify-content: space-evenly;
     row-gap: 1.5rem;
     margin-bottom: 2rem;
-    width: 90vw;
+    padding: 0 30px;
+    /* width: 90vw; */
 }
 
 h1 {
@@ -91,7 +104,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-left: 2px solid #868686a7;
+    border-left: 2px solid var(--color-primary);
     border-radius: 2px;
     row-gap: 1rem;
     width: 100%;
@@ -108,6 +121,10 @@ h1 {
 #gallery>img {
     height: 45px;
     width: 75px;
+}
+
+#blurb {
+    margin-top: 1rem;
 }
 
 #selected_categories {
@@ -144,7 +161,7 @@ h1 {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    background: #c5c5c5;
+    background: var(--bg-main);
     padding: 2rem 1rem;
     gap: 2rem;
 }
@@ -153,30 +170,87 @@ h1 {
     padding: .5rem;
     border-radius: 5px;
     background: white;
-    font-weight: 600;
+    font-weight: 500;
+    border-color: var(--color-scnd);
 }
 
-@media only screen and (min-width: 768px) {
-    body {
-        /* background: red; */
-    }
-
-    .wrapper {
-        width: 75%;
-    }
+.child-links:hover {
+    background-color: var(--color-scnd);
+    color: var(--bg-scnd);
+    border-color: var(--color-primary);
 }
 
-@media only screen and (min-width: 1024px) {
+.card_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+    width: 100%;
+    background-color: var(--bg-scnd);
+}
+
+.card-link {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 48%;
+}
+
+.card {
+    padding-bottom: 3rem;
+    border: none;
+    border-radius: 0;
+}
+
+.card:hover {
+    top: 0;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--color-scnd);
+}
+
+.card-title {
+    font-family: 'Times New Roman', Times, serif;
+    /* font-weight: 600; */
+    font-size: 1.5rem;
+}
+
+.card-timer {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+
+@media only screen and (min-width: 1040px) {
     body {
         /* background: silver; */
     }
 
     .wrapper {
+        width: 80%;
+    }
+
+    #meal-img {
         width: 60%;
+    }
+
+    #meal-info {
+        width: 30%;
+    }
+
+    .recipe-info {
+        width: 60%;
+    }
+
+    #blurb {
+        margin-top: 3rem;
+    }
+
+    .card_container {
+        justify-content: space-between;
     }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1200px) {
     body {
         /* background: lightseagreen; */
     }
@@ -186,8 +260,8 @@ h1 {
     }
 
     .wrapper {
-        width: 50%;
-        justify-content: flex-start;
+        /* width: 60%; */
+        /* justify-content: center; */
     }
 
     #meal-img {
@@ -202,7 +276,13 @@ h1 {
         order: 3;
     }
 
+    .card_container {}
+
+    .card-link {
+        width: 30%;
+    }
+
     .recipe-info {
-        width: 40rem;
+        /* width: 40rem; */
     }
 }
