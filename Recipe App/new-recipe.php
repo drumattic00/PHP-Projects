@@ -15,7 +15,7 @@ while($row = $stmt1->fetch()) {
 }
 ?>
 
-<div class="wrapper">
+<div class="new-recipe-wrapper">
     <h1>Add New Recipe</h1>
     <form action="submitrecipe.php" method="post" id="recipeForm">
         <h2 class="formH2">Basic Information</h2>
@@ -26,7 +26,7 @@ while($row = $stmt1->fetch()) {
         </div>
         <!-- Select: Category List -->
         <div class="input-group">
-        <label class="input-group-text" for="categorySelect">Category&nbsp;&nbsp;&nbsp;</label>
+        <label class="input-group-text" for="categorySelect">Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <select class="form-select" id="categorySelect" aria-label="Example select with button addon">
                 <option selected>Choose...</option>
                 <!-- Fill select w/ categories -->
@@ -44,7 +44,7 @@ while($row = $stmt1->fetch()) {
         </div>
         <!-- Input: prep time -->
         <div class="input-group mb-3">
-            <span class="input-group-text">Prep Time&nbsp;&nbsp;</span>
+            <span class="input-group-text">Prep Time&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <input type="text" class="form-control" id="preptime" name="prep_time" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: cook time -->
@@ -54,12 +54,12 @@ while($row = $stmt1->fetch()) {
         </div>
         <!-- Input: total time -->
         <div class="input-group mb-3">
-            <span class="input-group-text">Total Time&nbsp;</span>
+            <span class="input-group-text">Total Time&nbsp;&nbsp;&nbsp;</span>
             <input type="text" class="form-control" id="totaltime" placeholder="" name="total_time" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: servings -->
         <div class="input-group mb-3">
-            <span class="input-group-text">Servings&nbsp;&nbsp;&nbsp;</span>
+            <span class="input-group-text">Servings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <input type="text" class="form-control" id="servings" placeholder="" name="servings" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- input: image url -->

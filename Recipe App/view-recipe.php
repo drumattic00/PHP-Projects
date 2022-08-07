@@ -42,11 +42,11 @@ while($row = $stmt3->fetch()) {
 ?>
 
 
-<div class="wrapper">
+<div class="view-recipe-wrapper">
     <h1 class=""><?php echo $recipe_name; ?></h1>
         <div id="rating">
             <span>Rating:&nbsp;</span>
-            <i class="gold-star">
+            <i class="rating-stars">
                 <img src="img/goldstar.png" alt="">
                 <img src="img/goldstar.png" alt="">
                 <img src="img/goldstar.png" alt="">

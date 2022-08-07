@@ -6,7 +6,7 @@ require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');
 
 ?>
-<div class='wrapper'>
+<div class='browse-recipes-wrapper'>
 <?php
 require_once('inc/recipe-explorer.inc.php');
 ?>

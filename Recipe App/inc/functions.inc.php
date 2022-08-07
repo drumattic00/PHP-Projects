@@ -33,7 +33,7 @@ function recipeCard($recipe) {
     $descript = $recipe['descript'];
     $total_time = $recipe['total_time'];
     $img_url = $recipe['img_url'];
-    echo "<a class='card-link' href='index.php?meal_id=$meal_id'>";
+    echo "<a class='card-link' href='view-recipe.php?meal_id=$meal_id'>";
     echo "<div class='card'>";
     echo "<img src='$img_url' class='card-img-top' alt='image of $recipe_name'>";
     echo "<div class='card-body'>";

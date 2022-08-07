@@ -1,3 +1,3 @@
+- colors theme: https://colorhunt.co/palette/79b4b7fefbf3f8f0df9d9d9d
 - get rating system working
-- fine-tune responsiveness for each media query
-- Set up sections in style.css for each page of site.
+- 10 recipes for each category
