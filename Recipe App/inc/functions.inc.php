@@ -41,6 +41,6 @@ function recipeCard($recipe) {
     echo "<span class='card-timer'><img src='https://img.icons8.com/ios/50/000000/time--v1.png' style='width:25px;'/>&nbsp;$total_time</span>";
     echo "</div>";
     echo "</div>";
-    // echo "</a>";
+    echo "</a>";
 }
 ?>

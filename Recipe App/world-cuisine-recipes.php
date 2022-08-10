@@ -1,5 +1,5 @@
 <?php
-$title="Dinner Recipes";
+$title="World Cuisine Recipes";
 require_once('inc/header.inc.php');
 require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');

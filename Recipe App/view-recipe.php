@@ -41,57 +41,45 @@ while($row = $stmt3->fetch()) {
 }
 ?>
 
-
 <div class="view-recipe-wrapper">
     <h1 class=""><?php echo $recipe_name; ?></h1>
-        <div id="rating">
-            <span>Rating:&nbsp;</span>
-            <i class="rating-stars">
-                <img src="img/goldstar.png" alt="">
-                <img src="img/goldstar.png" alt="">
-                <img src="img/goldstar.png" alt="">
-                <img src="img/blankstar.png" alt="">
-                <img src="img/blankstar.png" alt="">
-            </i>
-        </div>
-    <div id="img-info-container">
-        <div id="meal-img" class="">
-            <img src="<?php echo $img_url; ?>" alt="">
-        </div>
-        <!-- <div id="gallery" class="">
-            <img src="https://source.unsplash.com/random/100x75" alt="">
-            <img src="https://source.unsplash.com/random/100x75" alt="">
-            <img src="https://source.unsplash.com/random/100x75" alt="">
-            <img src="https://source.unsplash.com/random/100x75" alt="">
-        </div> -->
-        <div id="meal-info" class="grid-col-span-1">
-            <p>Prep: <span id="prep"><?= $prep_time ?></span></p>
-            <p>Cook: <span id="cook"><?= $cook_time?></span></p>
-            <p>Total: <span id="total"><?= $total_time ?></span></p>
-            <p>Servings: <span id="servings"><?= $servings ?></span></p>
-        </div>
+    <div id="rating">
+        <span>Rating:&nbsp;</span>
+        <i class="rating-stars">
+            <img src="img/goldstar.png" alt="">
+            <img src="img/goldstar.png" alt="">
+            <img src="img/goldstar.png" alt="">
+            <img src="img/blankstar.png" alt="">
+            <img src="img/blankstar.png" alt="">
+        </i>
     </div>
-    <div class="recipe-info">
-        <div id="blurb" class="">
-            <p><?php echo $descript; ?></p>
-        </div>
-        <h2>Ingredients</h2>
-        <div id="ingredients" class="">
-            <?php printIngredients($ingredients); ?>
-        </div>
-        <h2>Directions</h2>
-        <div id="directions" class="directions-container">
-            <?php printDirections($directions); ?>
-        </div>
-        <h2 class="">Nutrition Facts</h2>
-        <div id="nutrition">
-            <p><?= $nutrition ?></p>
-        </div>
-        <h2 class="">Notes</h2>
-        <div id="notes" class="">
-            <p><?= $notes ?></p>
-        </div>
+    <div id="meal-img" class="">
+        <img src="<?php echo $img_url; ?>" alt="">
     </div>
-    <footer>Some Shit Here.</footer>
+    <div id="meal-info" class="">
+        <p>Prep: <span id="prep"><?= $prep_time ?></span></p>
+        <p>Cook: <span id="cook"><?= $cook_time?></span></p>
+        <p>Total: <span id="total"><?= $total_time ?></span></p>
+        <p>Servings: <span id="servings"><?= $servings ?></span></p>
+    </div>
+    <div id="blurb" class="">
+        <p><?php echo $descript; ?></p>
+    </div>
+    <h2>Ingredients</h2>
+    <div id="ingredients" class="">
+        <?php printIngredients($ingredients); ?>
+    </div>
+    <h2>Directions</h2>
+    <div id="directions" class="directions-container">
+        <?php printDirections($directions); ?>
+    </div>
+    <h2 class="">Nutrition Facts</h2>
+    <div id="nutrition">
+        <p><?= $nutrition ?></p>
+    </div>
+    <h2 class="">Notes</h2>
+    <div id="notes" class="">
+        <p><?= $notes ?></p>
+    </div>
 </div>
-<?php require_once('inc/footer.inc.php');
+<?php include('inc/footer.inc.php');

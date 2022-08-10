@@ -1,3 +1,5 @@
+
+
 // DOM hooks
 const addIngredient = document.querySelector("#addIngredient")
 const addDirection = document.querySelector("#addDirection")
@@ -33,6 +35,8 @@ addIngredient.addEventListener("click", () => {
     div1.appendChild(span1)
     div1.appendChild(input1)
     ingredients.appendChild(div1)
+    // input1.focus()
+    input1.select()
 })
 
 addDirection.addEventListener("click", () => {
@@ -52,6 +56,7 @@ addDirection.addEventListener("click", () => {
     div2.appendChild(span2)
     div2.appendChild(textarea1)
     directions.appendChild(div2)
+    textarea1.select()
 })
 
 addCategory.addEventListener("click", () => {

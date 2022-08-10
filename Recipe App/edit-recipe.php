@@ -7,6 +7,26 @@ require_once('inc/nav.inc.php');
 require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');
 
+// SETTING MEAL ID
+if($_GET){
+    $meal_id = htmlspecialchars($_GET['meal_id']);
+} else {
+    $meal_id = 28;
+}
+
+$stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
+$stmt->execute([$meal_id]);
+$info = $stmt->fetch();
+$recipe_name = $info['recipe_name'];
+$img_url = $info['img_url'];
+$descript = $info['descript'];
+$prep_time = $info['prep_time'];
+$cook_time = $info['cook_time'];
+$servings = $info['servings'];
+$total_time = $info['total_time'];
+$nutrition= $info['nutrition'];
+$notes = $info['notes'];
+
 // Add list of categories from database to array $categories
 $stmt1 = $pdo->query('SELECT * FROM category_types');
 $categories = [];
@@ -16,13 +36,15 @@ while($row = $stmt1->fetch()) {
 ?>
 
 <div class="new-recipe-wrapper">
-    <h1>Add New Recipe</h1>
+    <h1>Edit Recipe</h1>
     <form action="submit-recipe.php" method="post" id="recipeForm">
         <h2 class="formH2">Basic Information</h2>
         <!-- Recipe Name Input -->
         <div class="input-group mb-3">
             <span class="input-group-text" id="recipename">Recipe Name</span>
-            <input type="text" name="recipe_name" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="recipe_name" class="form-control" 
+                value="<?= $recipe_name ? $recipe_name : '';?>" 
+                aria-label="Username" aria-describedby="basic-addon1" />
         </div>
         <!-- Select: Category List -->
         <div class="input-group">
@@ -45,39 +67,49 @@ while($row = $stmt1->fetch()) {
         <!-- Input: prep time -->
         <div class="input-group mb-3">
             <span class="input-group-text">Prep Time&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <input type="text" class="form-control" id="preptime" name="prep_time" aria-label="" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" id="preptime" name="prep_time" 
+                value="<?= $prep_time ? $prep_time : '';?>" 
+                aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: cook time -->
         <div class="input-group mb-3">
             <span class="input-group-text">Cook Time&nbsp;&nbsp;</span>
-            <input type="text" class="form-control" id="cooktime" placeholder="" name="cook_time" aria-label="" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" id="cooktime" 
+                value="<?= $cook_time ? $cook_time : '';?>" 
+                name="cook_time" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: total time -->
         <div class="input-group mb-3">
             <span class="input-group-text">Total Time&nbsp;&nbsp;&nbsp;</span>
-            <input type="text" class="form-control" id="totaltime" placeholder="" name="total_time" aria-label="" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" id="totaltime" 
+                value="<?= $total_time ? $total_time : '';?>"
+                name="total_time" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: servings -->
         <div class="input-group mb-3">
             <span class="input-group-text">Servings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <input type="text" class="form-control" id="servings" placeholder="" name="servings" aria-label="" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" id="servings"
+                value="<?= $servings ? $servings : '';?>" 
+                name="servings" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- input: image url -->
         <div class="input-group mb-3">
             <span class="input-group-text">Image URL&nbsp;&nbsp;</span>
-            <input type="text" class="form-control" id="img_url" placeholder="" name="img_url" aria-label="" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" id="img_url" 
+            value="<?= $img_url ? $img_url : '';?>"
+            name="img_url" aria-label="" aria-describedby="basic-addon1">
         </div>
         <!-- Input: description -->
         <div class="input-group">
             <span class="input-group-text">Description</span>
-            <textarea class="form-control" name="descript" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="descript" aria-label="With textarea"><?= $descript ? $descript : '';?></textarea>
         </div>
         <!-- Input: ingredients -->
         <div id="ingredients">
             <h2 class="formH2">Ingredients</h2>
             <div class="input-group mb-3">
                 <span class="input-group-text">Ingredient 1</span>
-                <input type="text" class="form-control" id="ing_1" placeholder="" name="ing_1" aria-label="" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="ing_1" name="ing_1" aria-label="" aria-describedby="basic-addon1">
             </div>
         </div>
         <!-- Button: add ingredient -->
@@ -96,12 +128,12 @@ while($row = $stmt1->fetch()) {
         <h2 class="formH2">Nutrition Facts</h2>
         <!-- Text area: nutrition info -->
         <div class="input-group">
-            <textarea class="form-control" name="nutrition" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="nutrition" aria-label="With textarea"><?= $nutrition ? $nutrition : '';?></textarea>
         </div>
         <h2 class="formH2">Notes</h2>
         <!-- Text area: recipe notes -->
         <div class="input-group">
-            <textarea class="form-control" name="notes" aria-label="With textarea"></textarea>
+            <textarea class="form-control" name="notes" aria-label="With textarea"><?= $notes ? $notes : '';?></textarea>
         </div>
         <br>
         <!-- Button: submit form -->
