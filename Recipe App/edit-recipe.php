@@ -11,7 +11,7 @@ require_once('inc/functions.inc.php');
 if($_GET){
     $meal_id = htmlspecialchars($_GET['meal_id']);
 } else {
-    $meal_id = 28;
+    $meal_id = 31;
 }
 
 $stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
@@ -36,8 +36,8 @@ while($row = $stmt1->fetch()) {
 ?>
 
 <div class="new-recipe-wrapper">
-    <h1>Edit Recipe</h1>
-    <form action="submit-recipe.php" method="post" id="recipeForm">
+    <h1>Edit Recipe - <?= $recipe_name?></h1>
+    <form action="" method="" id="recipeForm">
         <h2 class="formH2">Basic Information</h2>
         <!-- Recipe Name Input -->
         <div class="input-group mb-3">
@@ -137,8 +137,21 @@ while($row = $stmt1->fetch()) {
         </div>
         <br>
         <!-- Button: submit form -->
-        <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Submit">
+        <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Update Recipe">
     </form>
 </div>
+
 <!-- Insert footer -->
-<?php require_once('inc/footer.inc.php'); ?>
+<?php require_once('inc/footer.inc.php');
+// Pull in current recipe categories 
+$stmtCat = $pdo->prepare('SELECT * FROM category_types INNER JOIN meal_categories ON category_types.category_id = meal_categories.category_id WHERE meal_categories.meal_id = :meal_id;');
+$stmtCat->execute([$meal_id]);
+$meal_categories = [];
+while($row = $stmtCat->fetch()) {
+    array_push($meal_categories, $row['category']);
+}
+foreach($meal_categories as $meal_category) {
+    echo "<script>addCategory('$meal_category')</script>";
+}
+?>
+

@@ -8,6 +8,7 @@
 - create by-world-cuisine explorer
 - fix image size and display issue with View Recipe page.
 - create Edit Recipe page
+- implement UPDATE SQL functionality on Edit Recipe page.
 
 -by world cuisine
 -by ingredient

@@ -27,7 +27,7 @@ while($row = $stmt1->fetch()) {
         <!-- Select: Category List -->
         <div class="input-group">
         <label class="input-group-text" for="categorySelect">Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <select class="form-select" id="categorySelect" aria-label="Example select with button addon">
+            <select class="form-select" id="categorySelect" aria-label="select with button addon">
                 <option selected>Choose...</option>
                 <!-- Fill select w/ categories -->
                 <?php fillCategories($categories); ?>  //functions.inc.php

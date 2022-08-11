@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title><?php echo $title;?></title>
+    <!-- <script src="js/script.js"></script> -->
 </head>
 <body>
 <?php require_once('inc/nav.inc.php'); ?>
