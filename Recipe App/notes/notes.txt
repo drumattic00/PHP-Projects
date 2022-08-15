@@ -1,20 +1,18 @@
+Theme
 - colors theme: https://colorhunt.co/palette/79b4b7fefbf3f8f0df9d9d9d
-- get rating system working
+
+Nav Bar
 - design responsive nav bar
-- fix high-zoom errors on nav bar
-- make pretty box for basic info. (make underneath picture on all responsive points)
 - make nav bar sticky:top
+- fix high-zoom errors on nav bar
+
+Components
+- get rating system working
+- make pretty box for basic info. (make underneath picture on all responsive points)
 - create by-ingredient explorer
 - create by-world-cuisine explorer
-- fix image size and display issue with View Recipe page.
-- create Edit Recipe page
-- implement UPDATE SQL functionality on Edit Recipe page.
+- finish Edit Recipe page functionality: Add in SQL Update Functionality
 
--by world cuisine
--by ingredient
-XdinnerX
-XbreakfastX
-XlunchX
-XdessertsX
-XdrinksX
-Xsnacks and appsX
+Updates
+- Implement AJAX on rating system
+- ? Implement AJAX on Submit Recipe/Edit Recipe page ?

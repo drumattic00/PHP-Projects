@@ -106,9 +106,14 @@ nav {
     /* gap: ; */
 }
 
-.rating-stars>img {
-    height: 20px;
-    width: 20px;
+.ratingStar {
+    height: 30px;
+    width: 30px;
+    margin: 0 3px;
+}
+
+.ratingStar:hover {
+    cursor: pointer;
 }
 
 #img-info-container {

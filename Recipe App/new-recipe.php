@@ -76,8 +76,6 @@ while($row = $stmt1->fetch()) {
         <div id="ingredients">
             <h2 class="formH2">Ingredients</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Ingredient 1</span>
-                <input type="text" class="form-control" id="ing_1" placeholder="" name="ing_1" aria-label="" aria-describedby="basic-addon1">
             </div>
         </div>
         <!-- Button: add ingredient -->
@@ -86,8 +84,6 @@ while($row = $stmt1->fetch()) {
         <div id="directions">
             <h2 class="formH2">Directions</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Step 1</span>
-                <textarea class="form-control" id="step_1" name="step_1" aria-label="" aria-describedby="basic-addon1"></textarea>
             </div>
         </div>
         <!-- Button to add direction -->
@@ -110,3 +106,4 @@ while($row = $stmt1->fetch()) {
 </div>
 <!-- Insert footer -->
 <?php require_once('inc/footer.inc.php'); ?>
+<script>addIngredient();addDirection()</script>

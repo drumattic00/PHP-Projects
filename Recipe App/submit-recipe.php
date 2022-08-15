@@ -39,6 +39,7 @@ if(isset($_POST['submit'])) {
     }
     if ($_POST['step_1'] != ""){
         $step_1 = trim($_POST['step_1']);
+        $step_1 = strtr( $step_1, array(  "\n" => "\\n",  "\r" => "\\r"  ));
     }
 
     try{
@@ -69,6 +70,7 @@ if(isset($_POST['submit'])) {
             for($i = 1; $i < 100; $i++) {
                 if(isset($_POST['step_' . $i]) && ($_POST['step_' . $i] != "")) {
                     $step = trim($_POST['step_' . $i]);
+                    $step = strtr( $step_1, array(  "\n" => "\\n",  "\r" => "\\r"  ));
                     $sql3 = $pdo->prepare("INSERT INTO `directions` (`id`, `meal_id`, `direction`) VALUES (NULL, :meal_id, :direction)");
                     $sql3->execute([$meal_id, $step]);
                     echo "Step added!\n";

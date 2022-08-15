@@ -9,9 +9,9 @@ require_once('inc/functions.inc.php');
 
 // SETTING MEAL ID
 if($_GET){
-    $meal_id = htmlspecialchars($_GET['meal_id']);
+    $meal_id = $_GET['meal_id'];
 } else {
-    $meal_id = 31;
+    $meal_id = 96;
 }
 
 $stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
@@ -108,8 +108,8 @@ while($row = $stmt1->fetch()) {
         <div id="ingredients">
             <h2 class="formH2">Ingredients</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Ingredient 1</span>
-                <input type="text" class="form-control" id="ing_1" name="ing_1" aria-label="" aria-describedby="basic-addon1">
+                <!-- <span class="input-group-text">Ingredient 1</span> -->
+                <!-- <input type="text" class="form-control" id="ing_1" name="ing_1" aria-label="" aria-describedby="basic-addon1"> -->
             </div>
         </div>
         <!-- Button: add ingredient -->
@@ -118,8 +118,6 @@ while($row = $stmt1->fetch()) {
         <div id="directions">
             <h2 class="formH2">Directions</h2>
             <div class="input-group mb-3">
-                <span class="input-group-text">Step 1</span>
-                <textarea class="form-control" id="step_1" name="step_1" aria-label="" aria-describedby="basic-addon1"></textarea>
             </div>
         </div>
         <!-- Button to add direction -->
@@ -143,6 +141,7 @@ while($row = $stmt1->fetch()) {
 
 <!-- Insert footer -->
 <?php require_once('inc/footer.inc.php');
+
 // Pull in current recipe categories 
 $stmtCat = $pdo->prepare('SELECT * FROM category_types INNER JOIN meal_categories ON category_types.category_id = meal_categories.category_id WHERE meal_categories.meal_id = :meal_id;');
 $stmtCat->execute([$meal_id]);
@@ -152,6 +151,22 @@ while($row = $stmtCat->fetch()) {
 }
 foreach($meal_categories as $meal_category) {
     echo "<script>addCategory('$meal_category')</script>";
+}
+
+// Pull in ingredients
+$stmtIng = $pdo->prepare('SELECT * FROM ingredients WHERE meal_id = :meal_id');
+$stmtIng->execute([$meal_id]);
+while($row = $stmtIng->fetch()) {
+    $ingredient = $row['ingredient'];
+    echo "<script>addIngredient('$ingredient')</script>";
+}
+
+// Pull in directions
+$stmtDir = $pdo->prepare('SELECT * FROM directions WHERE meal_id = :meal_id');
+$stmtDir->execute([$meal_id]);
+while($row = $stmtDir->fetch()) {
+    $direction = $row['direction'];
+    echo "<script>addDirection('$direction')</script>";
 }
 ?>
 

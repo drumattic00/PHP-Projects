@@ -1,14 +1,23 @@
 <?php
 $title="Recipe Page";
 
-if($_GET){
-    $meal_id = htmlspecialchars($_GET['meal_id']);
-} else {
-    $meal_id = 28;
-}
 require_once('inc/header.inc.php');
 require_once('inc/dbconnect.inc.php');
 require('inc/functions.inc.php');
+
+
+if($_GET){
+    $meal_id = htmlspecialchars($_GET['meal_id']);
+    // $rating = $_GET['rating'];
+} else {
+    // $rating = $_GET['rating'];
+    $meal_id = 97;
+}
+if(isset($_GET['rating'])){
+    $stmt4 = $pdo->prepare("UPDATE basic_info SET rating = :rating WHERE basic_info.meal_id = :meal_id");
+    $stmt4->execute([$_GET['rating'], $meal_id]);
+    echo "<script>window.location.replace('view-recipe.php?meal_id=$meal_id');</script>";
+}
 
 // Basic Information SQL Statement and Processing
 $stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
@@ -23,6 +32,9 @@ $servings = $info['servings'];
 $total_time = $info['total_time'];
 $nutrition= $info['nutrition'];
 $notes = $info['notes'];
+$rating = $info['rating'];
+// print_r($rating);
+
 
 // Ingredient List SQL Statement and Processing
 $stmt2 = $pdo->prepare('SELECT * FROM ingredients WHERE meal_id = :meal_id');
@@ -37,7 +49,9 @@ $stmt3 = $pdo->prepare('SELECT * FROM directions WHERE meal_id = :meal_id');
 $stmt3->execute([$meal_id]);
 $directions = [];
 while($row = $stmt3->fetch()) {
-    array_push($directions, $row['direction']);
+    $direction = $row['direction'];
+    $direction = strtr( $direction, array(  "\\n" => "\n",  "\\r" => "\r"  ));
+    array_push($directions, $direction);
 }
 ?>
 
@@ -45,13 +59,10 @@ while($row = $stmt3->fetch()) {
     <h1 class=""><?php echo $recipe_name; ?></h1>
     <div id="rating">
         <span>Rating:&nbsp;</span>
-        <i class="rating-stars">
-            <img src="img/goldstar.png" alt="">
-            <img src="img/goldstar.png" alt="">
-            <img src="img/goldstar.png" alt="">
-            <img src="img/blankstar.png" alt="">
-            <img src="img/blankstar.png" alt="">
-        </i>
+            <!-- <a href="view-recipe.php?meal_id=<//?= $meal_id ?>&rating=1"> -->
+                <!-- <img src="img/goldstar.png" class="ratingStar" alt=""> -->
+            <!-- </a> -->
+            
     </div>
     <div id="meal-img" class="">
         <img src="<?php echo $img_url; ?>" alt="">
@@ -82,4 +93,5 @@ while($row = $stmt3->fetch()) {
         <p><?= $notes ?></p>
     </div>
 </div>
-<?php include('inc/footer.inc.php');
+<?php include('inc/footer.inc.php'); ?>
+<script>setRating('<?="$rating"?>','<?="$meal_id"?>')</script>
