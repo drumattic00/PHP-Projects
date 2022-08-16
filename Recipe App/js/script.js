@@ -11,7 +11,27 @@ const recipeForm = document.querySelector("#recipeForm")
 const options = document.querySelectorAll("option")
 const clearCategoriesBtn = document.querySelector("#clearCategories")
 const ratingContainer = document.querySelector("#rating")
+const expandNav = document.querySelector('#expand-nav-btn')
+const collapsableNav = document.querySelector('#collapsable-nav')
+let menuDisplayed = ''
 
+document.addEventListener('click', (e) => {
+    if (!expandNav.contains(e.target)) {
+        collapsableNav.style.display = 'none'
+        menuDisplayed = false
+    }
+})
+
+expandNav.addEventListener('click', () => {
+    if (menuDisplayed == false) {
+        collapsableNav.style.display = 'inline-block';
+        menuDisplayed = true
+    } else {
+        collapsableNav.style.display = 'none'
+        menuDisplayed = false
+    }
+    // alert(collapsableNav.style.display)
+})
 
 // counters for ingredients and directions
 let ingCounter = 1
@@ -82,7 +102,7 @@ function addCategory(tempCatName) {
     // set the class attribute for CSS styling
     newCategory.setAttribute("class", "selected_category")
     // set the inner text of the span to the category name
-    let categoryName
+    let categoryName = ''
     if (tempCatName != null) {
         categoryName = tempCatName
     }
@@ -151,6 +171,7 @@ function createStar(meal_id, color, ratingValue) {
     ratingContainer.appendChild(starLink)
 
 }
+
 function setRating(rating, meal_id) {
     switch (rating) {
         case "1":
@@ -198,3 +219,5 @@ function setRating(rating, meal_id) {
             break;
     }
 }
+
+

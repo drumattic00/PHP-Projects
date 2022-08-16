@@ -3,11 +3,9 @@ Theme
 
 Nav Bar
 - design responsive nav bar
-- make nav bar sticky:top
 - fix high-zoom errors on nav bar
 
 Components
-- get rating system working
 - make pretty box for basic info. (make underneath picture on all responsive points)
 - create by-ingredient explorer
 - create by-world-cuisine explorer
@@ -16,3 +14,4 @@ Components
 Updates
 - Implement AJAX on rating system
 - ? Implement AJAX on Submit Recipe/Edit Recipe page ?
+- Refactor JS Rating System function
