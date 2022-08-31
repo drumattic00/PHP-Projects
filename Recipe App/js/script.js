@@ -9,7 +9,8 @@ const selectedCategories = document.querySelector("#selected_categories")
 const addCategoryBtn = document.querySelector("#addCategoryBtn")
 const recipeForm = document.querySelector("#recipeForm")
 const options = document.querySelectorAll("option")
-const clearCategoriesBtn = document.querySelector("#clearCategories")
+const clearCategoriesBtn = document.querySelector("#clearCategoriesBtn")
+const deleteBtn = document.querySelector('#deleteBtn')
 const ratingContainer = document.querySelector("#rating")
 const expandNav = document.querySelector('#expand-nav-btn')
 const collapsableNav = document.querySelector('#collapsable-nav')
@@ -96,18 +97,47 @@ addDirectionBtn.addEventListener("click", () => {
 
 // tags recipe with Category, removes the category from Select element,
 // and creates hidden input to modify the recipe database.
-function addCategory(tempCatName) {
+function addCategory(cat_id) {
+    const meal_categories = {
+        "1": "Breakfast",
+        "2": "Lunch",
+        "3": "Dinner",
+        "4": "Snacks",
+        "5": "Chicken",
+        "6": "Beef",
+        "7": "Pork",
+        "8": "Seafood",
+        "9": "Vegetarian",
+        "10": "Side-Dish",
+        "11": "Desserts",
+        "12": "Drinks",
+        "13": "Soup",
+        "14": "Barbeque",
+        "15": "Healthy",
+        "16": "Noodles",
+        "17": "Salads",
+        "18": "American",
+        "19": "Asian",
+        "20": "European",
+        "21": "Mediterranean",
+        "22": "Indian",
+        "23": "Mexican",
+        "24": "Italian",
+
+    }
     // create span element to display selected category
     let newCategory = document.createElement("span")
     // set the class attribute for CSS styling
     newCategory.setAttribute("class", "selected_category")
     // set the inner text of the span to the category name
     let categoryName = ''
-    if (tempCatName != null) {
-        categoryName = tempCatName
+    if (cat_id) {
+        categoryName = meal_categories[cat_id]
+        // categoryName = 'Shitty'
     }
-    if (!categoryName) {
-        categoryName = categorySelect.options[categorySelect.selectedIndex].text
+    if (categoryName == null) {
+        // categoryName = categorySelect.options[categorySelect.selectedIndex].text
+        categoryName = 'dong'
     }
     newCategory.innerText = categoryName
     // add the selected category span to the display area
@@ -121,8 +151,8 @@ function addCategory(tempCatName) {
     let hiddenInput = document.createElement("input")
     hiddenInput.setAttribute("class", "hiddenInput")
     hiddenInput.setAttribute("type", "hidden")
-    hiddenInput.setAttribute("value", categorySelect.value)
-    hiddenInput.setAttribute("name", "category_" + categorySelect.value)
+    hiddenInput.setAttribute("value", categoryName)
+    hiddenInput.setAttribute("name", "category_" + cat_id)
     recipeForm.appendChild(hiddenInput)
 
     //reset the Select Option to the default
@@ -134,9 +164,10 @@ function addCategory(tempCatName) {
 // add-recipe.php: adds new ingredient input-field
 addCategoryBtn.addEventListener("click", () => {    // hook for Category HTML select input
     let categorySelect = document.querySelector("#categorySelect")
+    console.log(categorySelect.value)
     // ignore if the default category option is not changed
     if (categorySelect.value != "Choose...") {
-        addCategory()
+        addCategory(categorySelect.value)
     }
 })
 
@@ -155,6 +186,15 @@ clearCategoriesBtn.addEventListener("click", () => {
         element.remove()
     })
 })
+
+function deleteRecipe(meal_id) {
+    response = prompt('This recipe will be deleted and it cannot be undone.\nType \"Yes\" to delete it.')
+    if (response.toLowerCase() == 'yes') {
+        window.location.href = "delete-recipe.php?meal_id=" + meal_id + "&delete=yes"
+    } else {
+        alert("An error has occurred. Recipe not deleted.")
+    }
+}
 
 function createStar(meal_id, color, ratingValue) {
     let starLink = document.createElement('a')

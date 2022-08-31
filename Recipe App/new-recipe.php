@@ -40,7 +40,7 @@ while($row = $stmt1->fetch()) {
         </div>
         <!-- Button to clear selected categories -->
         <div>
-            <input type="button" id="clearCategories" value="Clear Categories" hidden>
+            <input type="button" id="clearCategoriesBtn" value="Clear Categories" hidden>
         </div>
         <!-- Input: prep time -->
         <div class="input-group mb-3">

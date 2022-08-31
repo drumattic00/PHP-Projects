@@ -8,36 +8,43 @@ require_once('inc/dbconnect.inc.php');
 require_once('inc/functions.inc.php');
 
 // SETTING MEAL ID
-if($_GET){
+if(isset($_GET['meal_id'])){
     $meal_id = $_GET['meal_id'];
 } else {
-    $meal_id = 96;
+    header("Location: http://www.google.com");
 }
 
-$stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
-$stmt->execute([$meal_id]);
-$info = $stmt->fetch();
-$recipe_name = $info['recipe_name'];
-$img_url = $info['img_url'];
-$descript = $info['descript'];
-$prep_time = $info['prep_time'];
-$cook_time = $info['cook_time'];
-$servings = $info['servings'];
-$total_time = $info['total_time'];
-$nutrition= $info['nutrition'];
-$notes = $info['notes'];
-
-// Add list of categories from database to array $categories
-$stmt1 = $pdo->query('SELECT * FROM category_types');
-$categories = [];
-while($row = $stmt1->fetch()) {
-    $categories[$row['category_id']] = $row['category'];
-}
+    $stmt = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
+    $stmt->execute([$meal_id]);
+    $count = $stmt->rowCount();
+    if($count > 0) {
+        $info = $stmt->fetch();
+        $recipe_name = $info['recipe_name'];
+        $img_url = $info['img_url'];
+        $descript = $info['descript'];
+        $prep_time = $info['prep_time'];
+        $cook_time = $info['cook_time'];
+        $servings = $info['servings'];
+        $total_time = $info['total_time'];
+        $nutrition= $info['nutrition'];
+        $notes = $info['notes'];
+        
+        // Add list of categories from database to array $categories
+        $stmt1 = $pdo->query('SELECT * FROM category_types');
+        $categories = [];
+        while($row = $stmt1->fetch()) {
+            $categories[$row['category_id']] = $row['category'];
+        }
+    } else {
+        header("Location: test.php");
+    }
 ?>
 
 <div class="new-recipe-wrapper">
-    <h1>Edit Recipe - <?= $recipe_name?></h1>
-    <form action="" method="" id="recipeForm">
+    <h1>Edit Recipe: <?= $recipe_name?></h1>
+    <button class='btn btn-danger' id='deleteBtn' onclick='deleteRecipe("<?= $meal_id ?>")'>Delete Recipe</button>
+    <!-- <input type="button" class='btn btn-danger' id='deleteBtn' value="Delete Recipe"> -->
+    <form action="update-recipe.php" method="POST" id="recipeForm">
         <h2 class="formH2">Basic Information</h2>
         <!-- Recipe Name Input -->
         <div class="input-group mb-3">
@@ -62,7 +69,7 @@ while($row = $stmt1->fetch()) {
         </div>
         <!-- Button to clear selected categories -->
         <div>
-            <input type="button" id="clearCategories" value="Clear Categories" hidden>
+            <input type="button" id="clearCategoriesBtn" value="Clear Categories" hidden>
         </div>
         <!-- Input: prep time -->
         <div class="input-group mb-3">
@@ -136,18 +143,21 @@ while($row = $stmt1->fetch()) {
         <br>
         <!-- Button: submit form -->
         <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Update Recipe">
+        <input type="hidden" name="meal_id" value="<?= $meal_id ?>">
     </form>
 </div>
 
 <!-- Insert footer -->
 <?php require_once('inc/footer.inc.php');
 
-// Pull in current recipe categories 
+// Pull in categories 
 $stmtCat = $pdo->prepare('SELECT * FROM category_types INNER JOIN meal_categories ON category_types.category_id = meal_categories.category_id WHERE meal_categories.meal_id = :meal_id;');
 $stmtCat->execute([$meal_id]);
 $meal_categories = [];
 while($row = $stmtCat->fetch()) {
-    array_push($meal_categories, $row['category']);
+    // $rowAsArray = array('category_id' => $row['category_id'], 'category_name' => $row['category']);
+    // $meal_categories = array_merge($meal_categories, $rowAsArray);
+    array_push($meal_categories, $row['category_id']);
 }
 foreach($meal_categories as $meal_category) {
     echo "<script>addCategory('$meal_category')</script>";

@@ -70,7 +70,7 @@ if(isset($_POST['submit'])) {
             for($i = 1; $i < 100; $i++) {
                 if(isset($_POST['step_' . $i]) && ($_POST['step_' . $i] != "")) {
                     $step = trim($_POST['step_' . $i]);
-                    $step = strtr( $step_1, array(  "\n" => "\\n",  "\r" => "\\r"  ));
+                    $step = strtr( $step, array(  "\n" => "\\n",  "\r" => "\\r"  ));
                     $sql3 = $pdo->prepare("INSERT INTO `directions` (`id`, `meal_id`, `direction`) VALUES (NULL, :meal_id, :direction)");
                     $sql3->execute([$meal_id, $step]);
                     echo "Step added!\n";
@@ -89,6 +89,7 @@ if(isset($_POST['submit'])) {
                 }
             }
         }
+        header("location: view-recipe.php?meal_id=$meal_id&add=complete");
         // error handling
     } catch (Exception $e) {
         echo "There was an error.\n\n";

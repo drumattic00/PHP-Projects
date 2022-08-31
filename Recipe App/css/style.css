@@ -5,7 +5,7 @@
     --bg-scnd: #fdfbf6;
     --color-primary: #0a5c61;
     --color-scnd: #79B4B7;
-    --color-thr: ;
+    --color-thr: #222222;
     --color-four: ;
 }
 
@@ -30,8 +30,16 @@ body {
 }
 
 h1 {
-    margin-top: 1rem;
+    margin: 1rem 0;
+    font-weight: 700;
+    font-size: 2.75rem;
 }
+
+h2 {
+    background: linear-gradient(90deg, rgba(253, 251, 246, 1) 0%, rgba(253, 251, 246, 1) 50%, rgba(34, 34, 34, 1) 91%, rgba(34, 34, 34, 1) 100%);
+
+}
+
 
 /* link styles */
 
@@ -132,6 +140,14 @@ nav {
     width: 90vw;
 }
 
+.display-message {
+    background: var(--bg-main);
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid var(--color-thr);
+    border-radius: 5px;
+}
+
 #rating {
     display: flex;
     align-items: center;
@@ -152,7 +168,6 @@ nav {
     display: flex;
     justify-content: flex-start;
     gap: 1.5rem;
-    /* overflow: hidden; */
     height: 100%;
 }
 
@@ -168,8 +183,16 @@ nav {
 #meal-info {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
+    column-gap: 3rem;
+    /* row-gap: 2rem; */
+    background: var(--bg-main);
+    padding: 1rem 2rem 0 2rem;
+}
+
+#meal-info>p {
+    font-weight: 700;
 }
 
 #gallery {
@@ -184,7 +207,7 @@ nav {
 }
 
 #blurb {
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
 }
 
 #selected_categories {
@@ -197,18 +220,12 @@ nav {
     border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
+    margin: 0 .5rem;
 }
 
-.recipe-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 1.5rem;
-}
-
-#clearCategories {
+#clearCategoriesBtn {
     margin-bottom: 1rem;
-    float: right;
+    float: left;
     padding: 5px;
 }
 
@@ -358,18 +375,12 @@ nav {
         /* width: 60%; */
     }
 
-
-
     #meal-info {
-        width: 60%;
-    }
-
-    .recipe-info {
-        width: 60%;
+        /* width: 100%; */
     }
 
     #blurb {
-        margin-top: 3rem;
+        /* margin-top: 3rem; */
     }
 
     .card_container {
@@ -381,6 +392,10 @@ nav {
 
     body {
         align-items: flex-start;
+    }
+
+    h2 {
+        background: linear-gradient(90deg, rgba(253, 251, 246, 1) 0%, rgba(253, 251, 246, 1) 20%, rgba(34, 34, 34, 1) 91%, rgba(34, 34, 34, 1) 100%);
     }
 
     .input-group-text,
@@ -418,7 +433,7 @@ nav {
     }
 
     #meal-info {
-        width: 80%;
+        /* width: 100%; */
     }
 
     #gallery {

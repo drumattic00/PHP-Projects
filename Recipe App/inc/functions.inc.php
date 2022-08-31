@@ -43,4 +43,15 @@ function recipeCard($recipe) {
     echo "</div>";
     echo "</a>";
 }
+
+function showEditConfirmation() {
+    echo "<div class='display-message'>Your recipe has been updated.</div>";
+}
+
+function showAddConfirmation() {
+    echo "<div class='display-message'>Your recipe has been added.</div>";
+}
+function showDeleteConfirmation() {
+    echo "<div class='display-message'>Your recipe has been deleted.</div>";
+}
 ?>

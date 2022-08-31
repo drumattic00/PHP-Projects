@@ -6,13 +6,20 @@ require_once('inc/dbconnect.inc.php');
 require('inc/functions.inc.php');
 
 
-if($_GET){
-    $meal_id = htmlspecialchars($_GET['meal_id']);
-    // $rating = $_GET['rating'];
+if(isset($_GET['meal_id'])){
+    $meal_id = $_GET['meal_id'];
+    $stmtMeal = $pdo->prepare('SELECT * FROM basic_info WHERE meal_id = :meal_id');
+    $stmtMeal->execute([$meal_id]);
+    $rowCount = $stmtMeal->rowCount();
+    if($rowCount == 0) {
+        header("Location: browse-recipes.php");
+    }
 } else {
-    // $rating = $_GET['rating'];
+    // REPLACE WITH REDIRECT TO BROWSE OR SOMETHING
     $meal_id = 97;
 }
+
+
 if(isset($_GET['rating'])){
     $stmt4 = $pdo->prepare("UPDATE basic_info SET rating = :rating WHERE basic_info.meal_id = :meal_id");
     $stmt4->execute([$_GET['rating'], $meal_id]);
@@ -56,22 +63,28 @@ while($row = $stmt3->fetch()) {
 ?>
 
 <div class="view-recipe-wrapper">
-    <h1 class=""><?php echo $recipe_name; ?></h1>
+
+    <?php 
+    if(isset($_GET['edit'])) {
+        showEditConfirmation();
+    } elseif(isset($_GET['add'])) {
+        showAddConfirmation();
+    }
+    ?>
+
+    <h1 class="recipe-title"><?php echo $recipe_name; ?></h1>
     <div id="rating">
         <span>Rating:&nbsp;</span>
-            <!-- <a href="view-recipe.php?meal_id=<//?= $meal_id ?>&rating=1"> -->
-                <!-- <img src="img/goldstar.png" class="ratingStar" alt=""> -->
-            <!-- </a> -->
-            
     </div>
+    <span><a href="edit-recipe.php?meal_id=<?= $meal_id ?>">Edit Recipe</a></span>
     <div id="meal-img" class="">
         <img src="<?php echo $img_url; ?>" alt="">
     </div>
     <div id="meal-info" class="">
-        <p>Prep: <span id="prep"><?= $prep_time ?></span></p>
-        <p>Cook: <span id="cook"><?= $cook_time?></span></p>
-        <p>Total: <span id="total"><?= $total_time ?></span></p>
-        <p>Servings: <span id="servings"><?= $servings ?></span></p>
+        <p>Prep:<br> <span id="prep"><?= $prep_time ?></span></p>
+        <p>Cook:<br> <span id="cook"><?= $cook_time?></span></p>
+        <p>Total:<br> <span id="total"><?= $total_time ?></span></p>
+        <p>Servings:<br> <span id="servings"><?= $servings ?></span></p>
     </div>
     <div id="blurb" class="">
         <p><?php echo $descript; ?></p>
